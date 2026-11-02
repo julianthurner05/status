@@ -14,7 +14,7 @@
   --text-55:        rgba(255, 255, 255, 0.55);
   --text-40:        rgba(255, 255, 255, 0.4);
 
-  --fs-heading-xl:  40px;
+  --fs-heading-xl:  64px;
   --ls-heading:     0.005em;
   --fs-base:        15px;     --ls-base:       0.01em;
   --fs-label:       12.5px;   --ls-label:      0.015em;
@@ -63,7 +63,6 @@ body {
    ================================================================ */
 .status {
   width: 100%;
-  max-width: 550px;
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0 auto;
@@ -90,16 +89,22 @@ body {
   to   { opacity: 1; transform: none; }
 }
 
+/* Titel immer einzeilig: volle Größe, solange er passt, darunter
+   schrumpft er mit der Fensterbreite. --fit = Textbreite / Schriftgröße
+   (gemessen, plus etwas Luft) – bei neuem Titeltext neu messen. */
 .status__title {
-  font-size: var(--fs-heading-xl);
+  --fit: 9.3;
+  font-size: min(var(--fs-heading-xl), calc((100vw - 48px) / var(--fit)));
   letter-spacing: var(--ls-heading);
   line-height: 1.15;
   font-weight: 400;
-  text-wrap: balance;
+  white-space: nowrap;
 }
 
+.status__title--long { --fit: 14.3; }
+
 .status__sub {
-  margin-top: 14px;
+  margin-top: 18px;
   max-width: 420px;
   line-height: 1.6;
   color: var(--text-55);
@@ -131,7 +136,6 @@ body {
 .status__value { color: var(--text-80); }
 
 @media (max-width: 560px) {
-  :root { --fs-heading-xl: 30px; }
   .status { padding: 40px 16px; }
   .status__logo { width: 104px; }
 }
