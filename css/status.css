@@ -101,7 +101,7 @@ body {
   white-space: nowrap;
 }
 
-.status__title--long { --fit: 14.3; }
+.status__title--long { --fit: 16.6; }
 
 .status__sub {
   margin-top: 30px;
