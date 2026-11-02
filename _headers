@@ -1,0 +1,6 @@
+# Cloudflare Pages: Status-Seiten nie indexieren – gilt für jede Datei
+# (HTML, CSS, SVG), nicht nur für die Seiten mit dem robots-Meta-Tag.
+# Bewusst KEIN "Disallow" in einer robots.txt: dann dürften Crawler die
+# Seiten nicht abrufen und würden das noindex gar nicht sehen.
+/*
+  X-Robots-Tag: noindex, nofollow, noarchive
