@@ -14,7 +14,7 @@
   --text-55:        rgba(255, 255, 255, 0.55);
   --text-40:        rgba(255, 255, 255, 0.4);
 
-  --fs-heading-xl:  64px;
+  --fs-heading-xl:  56px;
   --ls-heading:     0.005em;
   --fs-base:        15px;     --ls-base:       0.01em;
   --fs-label:       12.5px;   --ls-label:      0.015em;
@@ -104,7 +104,7 @@ body {
 .status__title--long { --fit: 14.3; }
 
 .status__sub {
-  margin-top: 18px;
+  margin-top: 30px;
   max-width: 420px;
   line-height: 1.6;
   color: var(--text-55);
@@ -138,6 +138,7 @@ body {
 @media (max-width: 560px) {
   .status { padding: 40px 16px; }
   .status__logo { width: 104px; }
+  .status__sub { margin-top: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
