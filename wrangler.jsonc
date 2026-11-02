@@ -1,0 +1,11 @@
+{
+  // Status-Seiten (Wartung / Störung) auf status.sound-dna.com –
+  // rein statisch, kein Build-Schritt. Deploy über Workers Builds
+  // ("npx wrangler deploy"), Build-Befehl im Dashboard bleibt leer.
+  // "name" muss exakt dem Namen des Workers im Dashboard entsprechen.
+  "name": "status",
+  "compatibility_date": "2026-09-10",
+  "assets": {
+    "directory": "./"
+  }
+}
