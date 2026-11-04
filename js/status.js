@@ -31,15 +31,16 @@ function portalUrl(from) {
 // ---- Noch nicht erreichbar? ----
 // Solange die Umleitung aktiv ist, schickt Cloudflare den Klick sofort
 // wieder hierher – die Seite lädt neu und weiß von sich aus nichts mehr.
-// Deshalb merkt sich der Klick einen Zeitstempel im localStorage; kommt
-// der Nutzer kurz darauf zurück, erscheint die Meldung.
+// Deshalb merkt sich der Klick einen Zeitstempel im sessionStorage – der
+// bleibt im selben Tab über die Umleitung hinweg erhalten. Kommt der
+// Nutzer kurz darauf zurück, erscheint die Meldung.
 const RETRY_KEY = 'status-retry';
 const RETRY_WINDOW = 60 * 1000;
 
 function readRetry() {
   try {
-    const at = Number(localStorage.getItem(RETRY_KEY));
-    localStorage.removeItem(RETRY_KEY);
+    const at = Number(sessionStorage.getItem(RETRY_KEY));
+    sessionStorage.removeItem(RETRY_KEY);
     return at > 0 && Date.now() - at < RETRY_WINDOW;
   } catch {
     return false;
@@ -47,7 +48,7 @@ function readRetry() {
 }
 
 function saveRetry() {
-  try { localStorage.setItem(RETRY_KEY, String(Date.now())); } catch {}
+  try { sessionStorage.setItem(RETRY_KEY, String(Date.now())); } catch {}
 }
 
 const btn = document.getElementById('back-btn');
