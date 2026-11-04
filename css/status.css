@@ -167,15 +167,6 @@ body {
 
 .status__info:not([hidden]) + .status__action { margin-top: 12px; }
 
-/* Rückmeldung: Cloudflare hat nach dem Klick gleich wieder hierher umgeleitet */
-.status__note {
-  margin-top: 16px;
-  font-size: var(--fs-label);
-  letter-spacing: var(--ls-label);
-  color: var(--text-55);
-  animation: view-in var(--dur) var(--ease);
-}
-
 /* ---- Info-Zeile (wie ein Login-Feld) ---- */
 .status__info {
   width: 100%;
