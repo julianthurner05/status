@@ -28,9 +28,38 @@ function portalUrl(from) {
   }
 }
 
+// ---- Noch nicht erreichbar? ----
+// Solange die Umleitung aktiv ist, schickt Cloudflare den Klick sofort
+// wieder hierher – die Seite lädt neu und weiß von sich aus nichts mehr.
+// Deshalb merkt sich der Klick einen Zeitstempel im localStorage; kommt
+// der Nutzer kurz darauf zurück, erscheint die Meldung.
+const RETRY_KEY = 'status-retry';
+const RETRY_WINDOW = 60 * 1000;
+
+function readRetry() {
+  try {
+    const at = Number(localStorage.getItem(RETRY_KEY));
+    localStorage.removeItem(RETRY_KEY);
+    return at > 0 && Date.now() - at < RETRY_WINDOW;
+  } catch {
+    return false;
+  }
+}
+
+function saveRetry() {
+  try { localStorage.setItem(RETRY_KEY, String(Date.now())); } catch {}
+}
+
 const btn = document.getElementById('back-btn');
 const target = portalUrl(params.get('from'));
 if (btn && target) {
   btn.href = target;
   btn.hidden = false;
+
+  if (readRetry()) document.getElementById('back-note').hidden = false;
+
+  btn.addEventListener('click', (e) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;   // neuer Tab: kein Rückläufer hier
+    saveRetry();
+  });
 }

@@ -11,6 +11,8 @@
   --ink:            #0c0e29;
   --backdrop:       rgba(12, 14, 41, 0.72);
 
+  --fehler-text:    #dd9aa6;                 /* Meldungen */
+
   --text-100:       #ffffff;
   --text-80:        rgba(255, 255, 255, 0.8);
   --text-55:        rgba(255, 255, 255, 0.55);
@@ -166,6 +168,15 @@ body {
 }
 
 .status__info:not([hidden]) + .status__action { margin-top: 12px; }
+
+/* Meldung nach dem Rückläufer: Portal beim Klick noch nicht erreichbar */
+.status__note {
+  margin-top: 16px;
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  color: var(--fehler-text);
+  animation: view-in var(--dur) var(--ease);
+}
 
 /* ---- Info-Zeile (wie ein Login-Feld) ---- */
 .status__info {
