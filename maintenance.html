@@ -25,15 +25,16 @@
         <span class="status__label">Expected back</span>
         <span class="status__value" id="eta-value"></span>
       </div>
+
+      <!-- Ziel kommt aus ?from= (js/status.js); ohne from bleibt der Button aus -->
+      <a class="status__action" id="back-btn" href="#" hidden>
+        <span>Back to portal</span>
+        <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <p class="status__note" id="back-note" role="status" hidden>Maintenance is still in progress.</p>
     </div>
   </main>
 
-  <script>
-    const until = new URLSearchParams(location.search).get('until');
-    if (until) {
-      document.getElementById('eta-value').textContent = until.slice(0, 40);
-      document.getElementById('eta').hidden = false;
-    }
-  </script>
+  <script src="js/status.js"></script>
 </body>
 </html>

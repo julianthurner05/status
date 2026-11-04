@@ -6,7 +6,9 @@
 :root {
   --dunkelblau:     #0c0e29;
   --mittelblau:     #191b33;
+  --nav-active:     rgba(255, 255, 255, 0.9);
   --white-14:       rgba(255, 255, 255, 0.14);
+  --ink:            #0c0e29;
   --backdrop:       rgba(12, 14, 41, 0.72);
 
   --text-100:       #ffffff;
@@ -26,7 +28,9 @@
   --radius-lg:      15px;
 
   --ease:           cubic-bezier(0.45, 0, 0.15, 1);
+  --dur-fast:       240ms;
   --dur:            380ms;
+  --transition:     var(--dur-fast) var(--ease);
   --font:           'Inter Tight', sans-serif;
 }
 
@@ -56,6 +60,17 @@ body {
 }
 
 ::selection { background: var(--white-14); }
+
+.icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
 
 /* ================================================================
    GERÜST – Logo oben, Inhalt genau in der Fenstermitte
@@ -109,6 +124,56 @@ body {
   line-height: 1.6;
   color: var(--text-55);
   text-wrap: pretty;
+}
+
+/* Subline mit festen Zeilen (je ein <span>): keine Zeile bricht um, auf
+   schmalen Fenstern wird die Schrift etwas kleiner. --fit wie beim Titel:
+   längste Zeile / Schriftgröße, plus Luft; 32px = Seitenränder mobil. */
+.status__sub--lines {
+  --fit: 24.2;
+  font-size: min(var(--fs-base), calc((100vw - 32px) / var(--fit)));
+}
+
+.status__sub--lines span { display: block; white-space: nowrap; }
+
+/* ---- Zurück ins Portal (wie der Login-Button) ---- */
+.status__action {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 40px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+  border-radius: var(--radius-lg);
+  background: var(--nav-active);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.status__action:hover {
+  background: #ffffff;
+  box-shadow: 0 0 28px var(--white-14);
+}
+
+.status__action:active { transform: scale(0.995); }
+
+.status__action:focus-visible {
+  outline: var(--hair-w) solid var(--text-40);
+  outline-offset: 3px;
+}
+
+.status__info:not([hidden]) + .status__action { margin-top: 12px; }
+
+/* Rückmeldung: Cloudflare hat nach dem Klick gleich wieder hierher umgeleitet */
+.status__note {
+  margin-top: 16px;
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  color: var(--text-55);
+  animation: view-in var(--dur) var(--ease);
 }
 
 /* ---- Info-Zeile (wie ein Login-Feld) ---- */
